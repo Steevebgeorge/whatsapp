@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/constants.dart';
+import 'package:whatsapp/pages/calls_page.dart';
 import 'package:whatsapp/pages/chatspage.dart';
+import 'package:whatsapp/pages/community.dart';
+import 'package:whatsapp/pages/updates_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -14,9 +17,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _pages = [
     const ChatsPage(),
-    Container(),
-    Container(),
-    Container(),
+    const UpdatesPage(),
+    const CommunityPage(),
+    const CallsPage(),
   ];
 
   void _ontap(int index) {

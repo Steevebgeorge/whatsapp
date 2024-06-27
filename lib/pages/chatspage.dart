@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/constants.dart';
+import 'package:whatsapp/widgets/chat_tiles.dart';
+import 'package:whatsapp/widgets/popupbutton.dart';
 
 class ChatsPage extends StatelessWidget {
   const ChatsPage({super.key});
@@ -7,54 +9,19 @@ class ChatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            _head(),
-            _searchBar(),
-            _archeivesection(),
-            const SizedBox(
-              height: 18,
-            ),
-            Expanded(
-              child: ListView(
+            const PopUpButton(),
+            SingleChildScrollView(
+              child: Column(
                 children: [
-                  ListTile(
-                    onTap: () {},
-                    leading: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset(
-                          profile1,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    title: const Text('steeve'),
-                    subtitle: const Text(
-                      'hey man',
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    trailing: Column(
-                      children: [
-                        const Text('10:00 am'),
-                        Container(
-                          width: 23,
-                          height: 25,
-                          decoration: const BoxDecoration(
-                            color: greenColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Center(child: Text('2')),
-                        )
-                      ],
-                    ),
-                  )
+                  _searchBar(),
+                  _archeivesection(),
+                  _chats(),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -77,6 +44,123 @@ class ChatsPage extends StatelessWidget {
             style: TextStyle(
                 fontSize: 12, color: greenColor, fontWeight: FontWeight.bold),
           )
+        ],
+      ),
+    );
+  }
+
+  Widget _chats() {
+    return SizedBox(
+      child: Column(
+        children: [
+          ChatTiles(
+              contactName: 'steeve',
+              imagename: profile2,
+              message: 'hey man',
+              time: '5:00 Am',
+              pendingMessage: 1),
+          ChatTiles(
+              contactName: 'Max',
+              imagename: profile1,
+              message: 'Hello',
+              time: '2:00 Am',
+              pendingMessage: 2),
+          ChatTiles(
+              contactName: 'Rick',
+              imagename: profile3,
+              message: 'ill send them this message',
+              time: '9:00 Am',
+              pendingMessage: 5),
+          ChatTiles(
+              contactName: 'shane',
+              imagename: profile4,
+              message: 'how have you been?',
+              time: '12:00 Am',
+              pendingMessage: null),
+          ChatTiles(
+              contactName: 'kimiko',
+              imagename: profile5,
+              message: 'Good Morning',
+              time: '12:00 Am',
+              pendingMessage: 1),
+          ChatTiles(
+              contactName: 'katherine',
+              imagename: profile6,
+              message: 'how was your day?',
+              time: '3:00 Am',
+              pendingMessage: null),
+          ChatTiles(
+              contactName: 'Liam',
+              imagename: profile7,
+              message: 'Thats great',
+              time: '3:00 Am',
+              pendingMessage: 4),
+          ChatTiles(
+              contactName: 'Mia',
+              imagename: profile8,
+              message: 'appreciate your effort.?',
+              time: '3:00 Am',
+              pendingMessage: 7),
+          ChatTiles(
+              contactName: 'Emma',
+              imagename: profile9,
+              message: 'good luck',
+              time: '2:00 Am',
+              pendingMessage: 2),
+          ChatTiles(
+              contactName: 'steeve',
+              imagename: profile2,
+              message: 'hey man',
+              time: '5:00 Am',
+              pendingMessage: 1),
+          ChatTiles(
+              contactName: 'diana',
+              imagename: profile1,
+              message: 'Hello',
+              time: '2:00 Am',
+              pendingMessage: 2),
+          ChatTiles(
+              contactName: 'Rick',
+              imagename: profile3,
+              message: 'ill send them this message',
+              time: '9:00 Am',
+              pendingMessage: 5),
+          ChatTiles(
+              contactName: 'shane',
+              imagename: profile4,
+              message: 'how have you been?',
+              time: '12:00 Am',
+              pendingMessage: null),
+          ChatTiles(
+              contactName: 'kimiko',
+              imagename: profile5,
+              message: 'Good Morning',
+              time: '12:00 Am',
+              pendingMessage: 1),
+          ChatTiles(
+              contactName: 'katherine',
+              imagename: profile6,
+              message: 'how was your day?',
+              time: '3:00 Am',
+              pendingMessage: null),
+          ChatTiles(
+              contactName: 'Liam',
+              imagename: profile7,
+              message: 'Thats great',
+              time: '3:00 Am',
+              pendingMessage: 4),
+          ChatTiles(
+              contactName: 'Mia',
+              imagename: profile8,
+              message: 'appreciate your effort.?',
+              time: '3:00 Am',
+              pendingMessage: 7),
+          ChatTiles(
+              contactName: 'Emma',
+              imagename: profile9,
+              message: 'good luck',
+              time: '2:00 Am',
+              pendingMessage: 2),
         ],
       ),
     );
@@ -108,48 +192,6 @@ class ChatsPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _head() {
-    return Row(
-      children: [
-        const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Text(
-            'Whatsapp',
-            style: TextStyle(
-                fontSize: 20, color: greenColor, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const Spacer(),
-        const Icon(Icons.qr_code),
-        const SizedBox(
-          width: 15,
-        ),
-        const Icon(Icons.camera_alt),
-        PopupMenuButton(
-            itemBuilder: (ctx) => [
-                  const PopupMenuItem(
-                    child: Text("New Group"),
-                  ),
-                  const PopupMenuItem(
-                    child: Text("New Broadcast"),
-                  ),
-                  const PopupMenuItem(
-                    child: Text("Linked Devices"),
-                  ),
-                  const PopupMenuItem(
-                    child: Text("Starred Messages"),
-                  ),
-                  const PopupMenuItem(
-                    child: Text("Payments"),
-                  ),
-                  const PopupMenuItem(
-                    child: Text("Settings"),
-                  )
-                ])
-      ],
     );
   }
 }
